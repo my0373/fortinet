@@ -1,0 +1,57 @@
+- hosts: fortigates
+  collections:
+    - fortinet.fortios
+  connection: httpapi
+  gather_facts: no
+  vars:
+   vdom: "root"
+   ansible_httpapi_use_ssl: yes
+   ansible_httpapi_validate_certs: no
+   ansible_httpapi_port: 8443
+  
+  tasks:
+  - name: Collect facts
+    fortinet.fortios.fortios_configuration_fact:
+      selector: "firewall_policy"
+    register: fosfacts
+
+  # - name: Print interface details
+  #   ansible.builtin.debug:
+  #     var:  fosfacts['meta']['results'][0]['name']
+
+
+  # - name: Print interface details
+  #   ansible.builtin.debug:
+  #     var:  fosfacts['meta']['results'][0]['action']
+
+  - name: Print interface details
+    ansible.builtin.debug:
+      msg: "{{ item.name }}"
+    loop: "{{ fosfacts['meta']['results']  }}"
+
+    loop_control: 
+      label: "{{ item.name }}"
+
+  - name: Print Policy ID
+    ansible.builtin.debug:
+      msg: "{{ item.policyid }}"
+    loop: "{{ fosfacts['meta']['results']  }}"
+
+    loop_control: 
+      label: "{{ item.name }}"
+      
+      
+  # - name: Print interface details
+  #   ansible.builtin.debug:
+  #      var:  pat  
+    
+   
+
+  # - name: Print interface details
+  #   ansible.builtin.debug:
+  #     var:  item.name
+  #   loop: "{{ fosfacts['meta']['results']  }}"
+  #   loop_control: 
+  #     label: "{{ item.name }}"
+    
+    
