@@ -1,8 +1,10 @@
 - hosts: all
+  vars: 
+    fortigate_host: "127.0.0.1"
   tasks:
   - name: Wait until the Fortigate UI is available 
     ansible.builtin.uri:
-      url: "https://{{ ansible_host }}:8443"        # Check Docker API URL 
+      url: "https://{{ fortigate_host }}:8443"        # Check Docker API URL 
       return_content: yes                                     # Return Http Response content
       validate_certs: no                                      # Not recommended, but a simple hack to avoid SSL checks
       status_code:                                            # List of HTTP status code considered to be as a successful request
