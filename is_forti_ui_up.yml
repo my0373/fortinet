@@ -1,4 +1,4 @@
-- hosts: all
+- hosts: localhost
   vars: 
     fortigate_host: "127.0.0.1"
   tasks:
