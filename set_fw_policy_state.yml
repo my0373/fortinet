@@ -1,0 +1,51 @@
+- hosts: fortigates
+  collections:
+    - fortinet.fortios
+  connection: httpapi
+  gather_facts: no
+  vars:
+   vdom: "root"
+   ansible_httpapi_use_ssl: yes
+   ansible_httpapi_validate_certs: no
+   ansible_httpapi_port: 8443
+   policy_name: "webserver-egress"
+   target_policy_state: "accept"
+  
+  tasks:
+
+  # Collect the list of existing firewall policies  
+  - name: Collect facts
+    fortinet.fortios.fortios_configuration_fact:
+      selector: "firewall_policy"
+    register: fosfacts
+
+  # Loop through the policy names until we find one that matches
+  # the policy_name variable.
+  # We then create 2 new facts
+  # - target_policy_id  (The policy ID we need to manipulate the rules)
+  # - target_policy_name ( The name of the policy )
+  - name: show templating results
+    ansible.builtin.set_fact:
+      target_policy_id: "{{ item.policyid }}"
+      target_policy_name: "{{ item.name }}"
+      
+    loop: "{{ fosfacts['meta']['results']  }}"
+    when: item.name == policy_name
+    loop_control: 
+       label: "{{ item.policyid }}"
+
+  # Just to make life easier, we print the policy ID and name to the users 
+  - name: Disable the policy 
+    ansible.builtin.debug:
+      msg: "Disabling Policy ID {{ target_policy_id }} - {{ target_policy_name }}"
+
+  # We now set the state of the policy based on the target_policy_state variable. 
+  - name: Configure IPv4/IPv6 policies.
+    fortios_firewall_policy:
+      vdom:  "{{ vdom }}"
+      state: "present"
+      firewall_policy:
+        action: "{{ target_policy_state }}"
+        name: "{{ target_policy_name }}"
+        policyid: "{{ target_policy_id }}"
+  
