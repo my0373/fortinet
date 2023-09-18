@@ -11,17 +11,12 @@
 	<script src="index.js"></script>
     <h1> FOS Stats </h1>
     <script>
-    var myData = {"address":{"House_Number":505,"Street_Direction":"","Street_Name":"Claremont","Street_Type":"Street","Apt":"15L","Burough":"Brooklyn","State":"NY","Zip":"10451","Phone":"718-777-7777"},"casehead":0,"adults":[{"Last_Name":"Foo","First_Name":"A","Sex":"M","Date_Of_Birth":"01011980"}],"children":[]};
+    JSON.stringify({ {{ fosstats }} }, null, 4)
 
-var textedJson = JSON.stringify(myData, undefined, 2);
-$('#myTextarea').text(textedJson);
-</script>
+    </script>
 
-<textarea name="" id="myTextarea" cols="30" rows="10" spellcheck="false">
 
-</textarea>
-
-    {{ fosstats | to_nice_json | default("I know nothing about your stats") }}
+ <!--   {{ fosstats | to_nice_json | default("I know nothing about your stats") }} --> 
 
   </body>
 </html>
