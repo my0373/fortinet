@@ -9,18 +9,7 @@
   </head>
   <body>
 	<script src="index.js"></script>
-    <h1> FOS Stats </h1>
-    
-    
-
-    <pre id="myText" ></pre>
-
-    <script>
-    var data = { test: true };
-
-    document.getElementById("myText").innerHTML = JSON.stringify(data, null, 4);
-    
-    </script>
+    <h1> FOS Firewall Policy Parameters </h1>
 
     <pre>
     {{ fosstats | to_nice_json | default("I know nothing about your stats") }}
