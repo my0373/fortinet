@@ -10,8 +10,8 @@
   <body>
 	<script src="index.js"></script>
     <h1> FOS Stats </h1>
-    {{ fosstats }}
+    {{ fosstats | default("I know nothing about your stats") }}
     <h1> FOS Facts </h1>
-    {{ fosfacts }}
+    {{ fosfacts | default("I know nothing about your facts") }}
   </body>
 </html>
