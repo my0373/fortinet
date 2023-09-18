@@ -15,6 +15,8 @@
       selector: "firewall_policy"
     register: fosfacts
 
+  
+
   # - name: Print interface details
   #   ansible.builtin.debug:
   #     var:  fosfacts['meta']['results'][0]['name']
@@ -39,19 +41,10 @@
 
     loop_control: 
       label: "{{ item.name }}"
-      
-      
-  # - name: Print interface details
-  #   ansible.builtin.debug:
-  #      var:  pat  
-    
-   
 
-  # - name: Print interface details
-  #   ansible.builtin.debug:
-  #     var:  item.name
-  #   loop: "{{ fosfacts['meta']['results']  }}"
-  #   loop_control: 
-  #     label: "{{ item.name }}"
-    
-    
+  - name: Collect facts
+    ansible.builtin.set_stats:
+      data:
+        fosstats: fosfacts
+      aggregate: no
+      

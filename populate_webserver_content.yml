@@ -1,0 +1,9 @@
+- hosts: all
+  tasks:
+  - name: Template a file, using symbolic modes (equivalent to 0644)
+    ansible.builtin.template:
+      src: index.html.j2
+      dest: /var/www/index.html
+      owner: root
+      group: wheel
+      mode: u=rw,g=r,o=r
