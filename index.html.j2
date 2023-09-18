@@ -12,7 +12,7 @@
     <h1> FOS Firewall Policy Parameters </h1>
 
     <pre>
-    {{ fosstats | to_nice_json | default("I know nothing about your stats") }}
+    {{ fosstats['meta']['results'] | to_nice_json | default("I know nothing about your stats") }}
     </pre>
 
 
