@@ -10,8 +10,8 @@
   <body>
 	<script src="index.js"></script>
     <h1> FOS Stats </h1>
-    {{ fosstats |tojson_pretty | safe | default("I know nothing about your stats") }}
+    {{ fosstats | to_nice_json | default("I know nothing about your stats") }}
     <h1> FOS Facts </h1>
-    {{ fosfacts | tojson_pretty | safe | default("I know nothing about your facts") }}
+    {{ fosfacts | to_nice_json | default("I know nothing about your facts") }}
   </body>
 </html>
