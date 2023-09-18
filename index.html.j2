@@ -7,15 +7,17 @@
     <title>HTML 5 Boilerplate</title>
     <link rel="stylesheet" href="style.css">
   </head>
-  <body>
+  <body style="background-color: grey;">
+
 	<script src="index.js"></script>
-    <h1> FOS Firewall Policy Parameters </h1>
+    <h1 style="color: black; font-size: 40px;"> FOS Firewall Policy Parameters </h1>
 
     {% for policy in fosstats['meta']['results'] %}
-    <h1>
+    
+    <h1 style="color: red; font-size: 30px;">
     {{ policy.name }}
     </h1>
-    <pre>
+    <pre style="color: black; font-size: 20px;">
     {{ policy | to_nice_json }}
     </pre> 
     {%  endfor %}
