@@ -16,7 +16,7 @@
     {{ policy.name }}
     </h1>
     <pre>
-    {{ policy }}
+    {{ policy | to_nice_json }}
     </pre> 
     {%  endfor %}
 
