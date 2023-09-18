@@ -16,4 +16,4 @@
 
   - name: URL of the fortigate webserver
     ansible.builtin.debug:
-      msg: '"https://{{fortigate_host}}:8443/"'
+      msg: "https://{{fortigate_host}}:8443/"
