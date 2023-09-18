@@ -16,6 +16,12 @@
 var textedJson = JSON.stringify(myData, undefined, 2);
 $('#myTextarea').text(textedJson);
 </script>
+
+<textarea name="" id="myTextarea" cols="30" rows="10" spellcheck="false">
+
+</textarea>
+
     {{ fosstats | to_nice_json | default("I know nothing about your stats") }}
+
   </body>
 </html>
