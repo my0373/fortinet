@@ -45,6 +45,6 @@
   - name: Collect facts
     ansible.builtin.set_stats:
       data:
-        fosstats: fosfacts
+        fosstats: "{{ fosfacts }}"
       aggregate: no
       
