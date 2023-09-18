@@ -11,7 +11,5 @@
 	<script src="index.js"></script>
     <h1> FOS Stats </h1>
     {{ fosstats | to_nice_json | default("I know nothing about your stats") }}
-    <h1> FOS Facts </h1>
-    {{ fosfacts | to_nice_json | default("I know nothing about your facts") }}
   </body>
 </html>
