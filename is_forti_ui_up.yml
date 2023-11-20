@@ -12,6 +12,7 @@
     until: website_health_check.status                        # Wait until the HTTP code is 200
     retries: 20                                               # 20 * 10 seconds = 300s = 5 mins
     delay: 10                                                 # Every 10 seconds    
+    delegate_to: 127.0.0.1
 
   - name: URL of the fortigate webserver
     ansible.builtin.debug:
