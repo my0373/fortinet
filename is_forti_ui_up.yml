@@ -1,4 +1,4 @@
-- hosts: localhost
+- hosts: all
   tasks:
   - name: Wait until the Fortigate UI is available 
     ansible.builtin.uri:
